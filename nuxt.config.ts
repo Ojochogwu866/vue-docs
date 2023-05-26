@@ -12,16 +12,28 @@ export default defineNuxtConfig({
       routes: [
         '/',
         '/getting-started',
+        '/getting-started/installation',
+        '/getting-started/nuxt',
+        '/getting-started/design-principles',
+        '/styled-system',
+        '/styled-system/responsive-styles',
+        '/components/accordion',
+        '/components/alert',
+        '/components/avatar',
+        '/components/checkbox',
+        '/components/tag',
+        '/sitemap.xml'
       ]
     },
-    serveStatic: true,
+    serveStatic: true
   },
   app: {
     head: {
       title: siteName,
       htmlAttrs: {
         lang: siteLang
-      }
+      },
+      link: [{ rel: 'icon', type: 'image/png', href: '/favicon.ico' }]
     }
   },
   experimental: {
@@ -39,10 +51,21 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/content',
     '~/modules/content-chunks.module.ts',
-    '@chakra-ui/nuxt-next'
+    '@chakra-ui/nuxt-next',
+    '@nuxtjs/fontaine',
+    '@nuxtjs/html-validator',
+    '@nuxtjs/robots'
   ],
-  plugins: ['~/plugins/typography.ts'],
-  css: ['~/styles/fonts.scss', '~/styles/prism.scss'],
+  fontMetrics: {
+    fonts: [
+      'DM Sans',
+      {
+        family: 'DM Sans',
+        src: '@/styles/typography/files/dm-sans-all-400-normal.woff2'
+      }
+    ]
+  },
+  css: ['@/styles/typography/all.css', '~/styles/prism.scss'],
   content: {
     // documentDriven: true,
     markdown: {
