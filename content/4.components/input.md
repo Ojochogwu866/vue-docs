@@ -41,15 +41,15 @@ The `input` component comes with three sizes, the default size is `md`.
 - `lg (48px)`
 
 ::showcase
-::input-sizes
+::input-sizes{width=full}
 ::
 ::
 
 ```html
 <c-v-stack spacing="3">
-  <c-input v-model="input" placeholder="small size" size="sm" />
-  <c-input v-model="input" placeholder="medium size" size="md" />
-  <c-input v-model="input" placeholder="large size" size="lg" />
+  <c-input v-model="input" placeholder="example size sm" size="sm" />
+  <c-input v-model="input" placeholder="example size md" size="md" />
+  <c-input v-model="input" placeholder="example size lg" size="lg" />
 </c-v-stack>
 ```
 
@@ -59,7 +59,7 @@ The `input` component has four differepnt variant styles `outlined`, `flushed`, 
 `unstyled`. You can use any of the variants by passing the appropriate prop.
 
 ::showcase
-::input-variants
+::input-variants{width=full}
 ::
 ::
 
@@ -77,7 +77,7 @@ The `input` component has four differepnt variant styles `outlined`, `flushed`, 
 Addons can be added on either sides of the input component to enhance flexibility of the interface.
 
 ::showcase
-::input-addons
+::input-addons{width=full}
 ::
 ::
 
@@ -101,7 +101,7 @@ Addons can be added on either sides of the input component to enhance flexibilit
 Elements like icons and buttons can be added in the input tabs. This can easily be done by exporting the `c-input-left-element` and `c-input-right-element` in your `c-input-group` component. Moreso, you can pass properties to customize color of icon elements.
 
 ::showcase
-::input-elements
+::input-elements{width=full}
 ::
 ::
 
@@ -119,3 +119,12 @@ Elements like icons and buttons can be added in the input tabs. This can easily 
   </c-input-group>
 </c-v-stack>
 ```
+
+### Password Input Example
+
+Let's use this component to create a password input field with show password functionality.
+
+::showcase
+::input-password{width=full}
+::
+::
