@@ -1,130 +1,240 @@
 ---
 title: Input
-description: Input Component
+description: Input component is a component that is used to get user input in a text field.
 version: 2.0+
 ---
 
 # Input
 
-The `input` component is used to get text in the input field.
+Input component is a component that is used to get user input in a text field.
+
+
+## Import
+
+```js
+import { CInput } from '@chakra-ui/vue-next';
+```
 
 ## Usage
 
-Chakra-ui Vue exports the following components;
-
-- **CInput**: The input container that holds the input text.
-- **CInputGroup**: The `CInputGroup` component is a container to enhance an input by adding an icon, text or a button on either sides of the container.
-
-```js
-import { CInput, CInputGroup } from '@chakra-ui/vue-next';
-```
-
-### Base input
-
-Here's a basic usage format of the `input` component
+Here's a basic usage example of the `CInput` component:
 
 ::showcase
-::basic-usage
+::basic-input
 ::
 ::
 
 ```html
-<c-input placeholder="Hello" />
+    <c-input placeholder="Basic usage" />
 ```
 
-### Input Sizes
 
-The `input` component comes with three sizes, the default size is `md`.
+## Changing the size of the Input
 
-- `sm (32px)`
-- `md (40px)`
-- `lg (48px)`
+The `Input` component comes in four sizes. The default is `md`.
+* xs (24px)
+* sm (32px)
+* md (40px)
+* lg (48px)
 
 ::showcase
-::input-sizes{width=full}
+::size-input
 ::
 ::
 
 ```html
-<c-v-stack spacing="3">
-  <c-input v-model="input" placeholder="example size sm" size="sm" />
-  <c-input v-model="input" placeholder="example size md" size="md" />
-  <c-input v-model="input" placeholder="example size lg" size="lg" />
-</c-v-stack>
+<c-stack spacing="3" w="2xl" align-items="center">
+    <c-input placeholder="extra small size" size="xs" />
+    <c-input placeholder="small size" size="sm" />
+    <c-input placeholder="medium size" size="md" />
+    <c-input placeholder="large size" size="lg" />
+</c-stack>
 ```
 
-### Input variants
-
-The `input` component has four differepnt variant styles `outlined`, `flushed`, `filled`, and
-`unstyled`. You can use any of the variants by passing the appropriate prop.
+If you want to use the native DOM `size` attribute you can use the `htmlSize` prop. For it to work as expected you will also need to provide the `width` prop set to `auto`.
 
 ::showcase
-::input-variants{width=full}
+::input-html-size
 ::
 ::
 
 ```html
-<c-v-stack>
-  <c-input variant="outline" placeholder="Outline" />
-  <c-input variant="filled" placeholder="Filled" />
-  <c-input variant="flushed" placeholder="Flushed" />
-  <c-input variant="unstyled" placeholder="Unstyled" />
-</c-v-stack>
+<c-input html-size="4" width="auto" />
 ```
 
-### Input addons
 
-Addons can be added on either sides of the input component to enhance flexibility of the interface.
+## Changing the appearance of the input
+
+The input component comes in 4 variants: `outline`, `unstyled`, `flushed`, and `filled`. Pass the `variant` prop and set it to one of these values.
 
 ::showcase
-::input-addons{width=full}
+::input-appearance
 ::
 ::
 
 ```html
-<c-v-stack>
-  <c-input-group>
-    <c-input-left-addon> https:// </c-input-left-addon>
-    <c-input placeholder="website.com" />
-    <c-input-right-addon> .com </c-input-right-addon>
-  </c-input-group>
-
-  <c-input-group>
-    <c-input-left-addon> +234 </c-input-left-addon>
-    <c-input placeholder="814-002-40" />
-  </c-input-group>
-</c-v-stack>
+<c-stack spacing="3" w="2xl" align-items="center">
+    <c-input variant='outline' placeholder='Outline' />
+    <c-input variant='filled' placeholder='Filled' />
+    <c-input variant='flushed' placeholder='Flushed' />
+    <c-input variant='unstyled' placeholder='Unstyled' />
+</c-stack>
 ```
 
-### Input elements
 
-Elements like icons and buttons can be added in the input tabs. This can easily be done by exporting the `c-input-left-element` and `c-input-right-element` in your `c-input-group` component. Moreso, you can pass properties to customize color of icon elements.
+## Left and Right Addons
+
+Like bootstrap, you can add addons to the left and right of the `Input` component. Chakra UI exports `InputGroup`, `InputLeftAddon`, and `InputRightAddon` to help with this use case.
 
 ::showcase
-::input-elements{width=full}
+::input-addon
+::
+::
+
+
+```html
+<c-stack spacing="4" w="xl" align-items="center">
+    <c-input-group>
+        <c-input-left-addon>+234</c-input-left-addon>
+        <c-input type="tel" rounded-left="0" placeholder="phone number" />
+    </c-input-group>
+
+    <c-input-group>
+        <c-input-left-addon>https://</c-input-left-addon>
+        <c-input rounded="0" placeholder="mysite" />
+        <c-input-right-addon>.com</c-input-right-addon>
+    </c-input-group>
+</c-stack>
+```
+
+## Add elements inside Input
+
+In some scenarios, you might need to add an icon or button inside the input component. Chakra UI exports `InputLeftElement` and `InputRightElement` to help with this use case.
+
+If the left or right is an icon or text, you can pass `pointerEvents="none"` to `InputLeftElement` or `InputRightElement` to ensure that clicking on them focused the input.
+
+::showcase
+::input-elements
 ::
 ::
 
 ```html
-<c-v-stack>
-  <c-input-group>
-    <c-input-left-element color="gray.300"> $ </c-input-left-element>
-    <c-input placeholder="Enter amount" />
-  </c-input-group>
-  <c-input-group>
-    <c-input-right-element>
-      <c-icon name="check" color="green.500" />
-    </c-input-right-element>
-    <c-input placeholder="Name of identified pet" />
-  </c-input-group>
-</c-v-stack>
+<c-stack spacing="4" w="xl" align-items="center">
+    <c-input-group>
+        <c-input-left-element><c-icon name="phone" color="gray.300" /></c-input-left-element>
+        <c-input type="phone" placeholder="Phone number" />
+    </c-input-group>
+
+    <c-input-group>
+        <c-input-left-element color="gray.300" fontSize="1.2em">¥</c-input-left-element>
+        <c-input placeholder="Enter amount" />
+        <c-input-right-element><c-icon name="check" color="green.500" /></c-input-right-element>
+    </c-input-group>
+</c-stack>
 ```
 
-### Password Input Example
 
-Let's use this component to create a password input field with show password functionality.
+## Password Input Example
+
+Let's use these components to create a password input with a show/hide password functionality:
 
 ::showcase
-::input-password{width=full}
+::input-password
 ::
 ::
+
+```html
+<template>
+    <c-input-group size="md">
+        <c-input pr="4.5rem" :type="show ? 'text' : 'password'" placeholder="Enter password" v-model="password" />
+        <c-input-right-element width="4.5rem">
+            <c-button h="1.75rem" size="sm" @click="show = !show">
+                {{ show ? 'Hide' : 'Show' }}
+            </c-button>
+        </c-input-right-element>
+    </c-input-group>
+</template>
+  
+<script setup>
+    import { CInput, CInputGroup, CInputRightElement } from '@chakra-ui/vue-next';
+    const show = ref(false);
+    const password = ref('kurama<3naruto');
+</script>
+```
+
+
+## Changing the focus and error border colors
+
+You can change the border color that shows when the input receives focus (`focusBorderColor`) and when `isInvalid` is set to `true` (`errorBorderColor`). The value can be set to a color in the `$chakraTheme` object, like `green.400` or a raw CSS value.
+
+::showcase
+::input-focus
+::
+::
+
+```html
+<c-stack spacing="4" w="xl" align-items="center">
+    <c-input focus-border-color="lime" placeholder="Here is a sample placeholder" />
+    <c-input focus-border-color="pink.400" placeholder="Here is a sample placeholder" />
+    <c-input is-invalid error-border-color="red.300" placeholder="Here is a sample placeholder" />
+    <c-input is-invalid error-border-color="crimson" placeholder="Here is a sample placeholder" />
+</c-stack>
+```
+
+
+## Styling the placeholder
+
+The placeholder of an input can be styled by using the `_placeholder` prop. Per default the placeholder has an opacity of 0.6, so it can be necessary to set the opacity to 1 if you want the placeholder to have a specific color.
+
+::showcase
+::input-placeholder-style
+::
+::
+
+```html
+<c-stack spacing="4" w="xl" align-items="center">
+    <c-input placeholder='default placeholder' />
+    <c-input placeholder='custom placeholder' :_placeholder="{ opacity: 1, color: 'gray.500' }" />
+    <c-input color='teal' placeholder='custom placeholder' :_placeholder="{ color: 'inherit' }" />
+    <c-input color='tomato' placeholder='custom placeholder' :_placeholder="{ opacity: 0.4, color: 'inherit' }" />
+</c-stack>
+```
+
+
+## Input Methods other than Text
+
+You can use different types with `Input` such as dateTime, color, search, file etc.
+
+Date and Time Picker
+
+::showcase
+::input-date
+::
+::
+
+```html
+<c-input type="datetime-local" placeholder="Select Date and Time" size="md" />
+```
+
+Check for different input types available : https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input#input_types
+
+## Props
+
+The Input component composes PseudoBox so you can pass all `CPseudoBox` props, and normal `HTMLInput` attributes.
+
+| Name             | Type                               | Default | Description                                                                                                                   |
+|------------------|------------------------------------|---------|-------------------------------------------------------------------------------------------------------------------------------|
+| `as`               | `HTMLElement` or `Vue.Component`       | `input`   | The component to use in place of `input`.                                                                                       |
+| `aria-label`       | `string`                             |         | Accessibility label to use, in scenarios where the input has no visible label. A11y: It's usefult for screen readers.         |
+| `aria-describedby` | `string`                             |         | Accessibility label to use, in scenarios where the input has no visible label. A11y: It's usefult for screen readers.         |
+| `isDisabled`       | `boolean`                            | `false`   | If `true`, the input will be disabled. This sets `aria-disabled=true` and you can style this state by passing `_disabled` prop.     |
+| `isInvalid`        | `boolean`                            | `false`   | If `true`, the input will indicate an error. This sets `aria-invalid=true` and you can style this state by passing `_invalid` prop. |
+| `isRequired`       | `boolean`                            | `false`   | If `true`, the input element will be required.                                                                                  |
+| `isFullWidth`      | `boolean`                            | `false`   | If `true`, the input element will span the full width of it's parent.                                                           |
+| `isReadOnly`       | `boolean`                            | `false`   | If `true`, prevents the value of the input from being edited.                                                                   |
+| `size`             | `sm`, `md`, `lg`                         | `md`      | The visual size of the `input` element.                                                                                         |
+| `variant`          | `outline`, `unstyled`, `flushed`, `filled` | `outline` | The variant of the input style to use.                                                                                        |
+| `focusBorderColor` | `string`                             |         | The border color when the input is focused.                                                                                   |
+| `errorBorderColor` | `string`                             |         | The border color when `isInvalid` is set to `true`.                                                                               |
+
+
